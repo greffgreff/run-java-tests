@@ -7,7 +7,7 @@ Useful scenarios for such an action include running smoke tests with a cucumber 
 Below is one such example, where a cucumber tests are ran before a docker image is created. A repository containing a java project is specified under `repo` that contains the cucumber tests in question. Optionally, one can specify a branch name under the `branch` property to target specific tests for instance. 
 
 ```yml
-name: Exemple Pipeline
+name: Example Pipeline
 
 on:
   release:
