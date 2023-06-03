@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Run Cucumber Regression
-          uses: greffgreff/run-java-tests-action@master
+          uses: greffgreff/run-java-tests-action@1.0
           with:
             repo: https://github.com/some-organization/some-java-project-with-tests.git
             branch: dev/pricing-integration
