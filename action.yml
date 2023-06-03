@@ -1,0 +1,33 @@
+name: Run java test in a workflow
+description: Run tests from a java project as part of your workflows.
+inputs:
+  repo:
+    description: 'Repository URL where Java tests reside in'
+    required: true
+  branch:
+    description: 'Optional branch to target tests on a specific branch'
+    required: false
+runs:
+  using: 'composite'
+  steps:
+    - name: Clone Java Repository
+      shell: bash
+      run: |
+        REPO_URL="${{ inputs.repo }}"
+        REPO_NAME=$(basename $REPO_URL .git)
+        echo "Repository Name: $REPO_NAME"
+
+        if [ -n "${{ inputs.branch }}" ]; then
+          git clone --branch ${{ inputs.branch }} $REPO_URL
+        else
+          git clone $REPO_URL
+        fi
+
+        echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
+    - name: Run Java Tests
+      shell: bash
+      run: |
+        echo ${{ env.REPO_NAME }}
+        cd ${{ env.REPO_NAME }}
+        mvn clean test
