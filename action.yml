@@ -30,4 +30,4 @@ runs:
       run: |
         echo ${{ env.REPO_NAME }}
         cd ${{ env.REPO_NAME }}
-        mvn clean test
+        mvn clean test -ntp
